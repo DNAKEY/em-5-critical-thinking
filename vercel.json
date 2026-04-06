@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "name": "em-5-critical-thinking",
+  "builds": [
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}

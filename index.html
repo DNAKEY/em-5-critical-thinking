@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EM 5.0 Critical Thinking Project Initiative</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --text-3xl: clamp(2.5rem, 1rem + 4vw, 5rem);
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem;
+      --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem;
+      --space-20: 5rem; --space-24: 6rem;
+      --radius-sm: 0.375rem; --radius-md: 0.75rem; --radius-lg: 1.25rem; --radius-xl: 1.75rem; --radius-full: 9999px;
+      --color-bg: #f6f3ee;
+      --color-surface: #fcfbf8;
+      --color-surface-2: #f3efe8;
+      --color-surface-3: #ebe5dc;
+      --color-border: rgba(40,37,29,0.12);
+      --color-divider: rgba(40,37,29,0.08);
+      --color-text: #211d18;
+      --color-text-muted: #665f56;
+      --color-text-faint: #9a9389;
+      --color-primary: #0d5c63;
+      --color-primary-2: #9f4029;
+      --color-highlight: #d9efe8;
+      --color-gold: #a77a18;
+      --shadow-sm: 0 2px 8px rgba(32, 24, 15, 0.06);
+      --shadow-md: 0 12px 32px rgba(32, 24, 15, 0.10);
+      --shadow-lg: 0 24px 64px rgba(32, 24, 15, 0.14);
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --content: 1180px;
+    }
+    [data-theme="dark"] {
+      --color-bg: #161412;
+      --color-surface: #1d1a17;
+      --color-surface-2: #25211d;
+      --color-surface-3: #2b2621;
+      --color-border: rgba(236,231,224,0.12);
+      --color-divider: rgba(236,231,224,0.08);
+      --color-text: #f1ece4;
+      --color-text-muted: #c6bfb5;
+      --color-text-faint: #8d857b;
+      --color-primary: #67b0b8;
+      --color-primary-2: #d67e62;
+      --color-highlight: rgba(103,176,184,0.12);
+      --color-gold: #d8b35b;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.24);
+      --shadow-md: 0 12px 32px rgba(0,0,0,0.32);
+      --shadow-lg: 0 24px 64px rgba(0,0,0,0.45);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: 1.65;
+      background:
+        radial-gradient(circle at top left, rgba(13,92,99,0.08), transparent 28%),
+        radial-gradient(circle at 85% 10%, rgba(159,64,41,0.08), transparent 22%),
+        var(--color-bg);
+      color: var(--color-text);
+    }
+    a { color: inherit; }
+    img, svg { display: block; max-width: 100%; }
+    button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+    .skip-link {
+      position: absolute; left: -9999px; top: 0;
+    }
+    .skip-link:focus { left: 1rem; top: 1rem; z-index: 1000; background: var(--color-surface); padding: .75rem 1rem; border-radius: var(--radius-sm); }
+    .container { width: min(calc(100% - 2rem), var(--content)); margin: 0 auto; }
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(14px);
+      background: color-mix(in srgb, var(--color-bg) 82%, transparent);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-4) 0; }
+    .brand { display: flex; align-items: center; gap: var(--space-3); text-decoration: none; }
+    .brand-mark {
+      width: 2.75rem; height: 2.75rem; padding: .55rem; border-radius: .9rem;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-2)); color: #fff;
+      box-shadow: var(--shadow-sm);
+    }
+    .brand-meta strong { display: block; font-size: var(--text-sm); letter-spacing: .08em; text-transform: uppercase; }
+    .brand-meta span { display: block; font-size: var(--text-xs); color: var(--color-text-muted); }
+    .nav-links { display: flex; align-items: center; gap: var(--space-4); }
+    .nav-links a { text-decoration: none; color: var(--color-text-muted); font-size: var(--text-sm); }
+    .theme-toggle {
+      min-width: 44px; min-height: 44px; border-radius: var(--radius-full);
+      border: 1px solid var(--color-border); background: var(--color-surface);
+      display: grid; place-items: center;
+    }
+    .hero { padding: clamp(4rem, 10vw, 8rem) 0 var(--space-16); }
+    .hero-grid {
+      display: grid; grid-template-columns: 1.2fr .8fr; gap: var(--space-8); align-items: end;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: .6rem; padding: .45rem .85rem; border-radius: var(--radius-full);
+      background: var(--color-highlight); color: var(--color-primary); font-size: var(--text-xs); font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      margin-bottom: var(--space-5);
+    }
+    h1, h2, h3 { font-family: var(--font-display); line-height: 1.02; letter-spacing: -0.02em; }
+    h1 { font-size: var(--text-3xl); max-width: 12ch; }
+    .hero p.lead {
+      margin-top: var(--space-6); max-width: 64ch; color: var(--color-text-muted); font-size: var(--text-lg);
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-8); }
+    .btn {
+      display: inline-flex; align-items: center; gap: .7rem; min-height: 48px;
+      padding: .85rem 1.15rem; border-radius: var(--radius-full); text-decoration: none; font-size: var(--text-sm); font-weight: 700;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--color-primary); color: #fff; box-shadow: var(--shadow-sm); }
+    .btn-secondary { border: 1px solid var(--color-border); background: var(--color-surface); }
+    .hero-card {
+      background: linear-gradient(180deg, var(--color-surface), var(--color-surface-2));
+      border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-6);
+      box-shadow: var(--shadow-md);
+    }
+    .hero-card h3 { font-size: var(--text-xl); margin-bottom: var(--space-4); }
+    .metric-list { display: grid; gap: var(--space-4); }
+    .metric {
+      display: grid; grid-template-columns: auto 1fr; gap: var(--space-4); align-items: start;
+      padding-top: var(--space-4); border-top: 1px solid var(--color-divider);
+    }
+    .metric:first-child { padding-top: 0; border-top: 0; }
+    .metric strong { font-size: 2rem; line-height: 1; font-family: var(--font-display); color: var(--color-primary); }
+    .metric span { color: var(--color-text-muted); font-size: var(--text-sm); }
+    main section { padding: var(--space-16) 0; border-top: 1px solid var(--color-divider); }
+    .section-head { display: grid; grid-template-columns: .9fr 1.1fr; gap: var(--space-8); margin-bottom: var(--space-8); align-items: end; }
+    .section-head h2 { font-size: var(--text-2xl); }
+    .section-head p { color: var(--color-text-muted); max-width: 62ch; }
+    .grid-2, .grid-3 { display: grid; gap: var(--space-5); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .panel {
+      background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg);
+      padding: var(--space-6); box-shadow: var(--shadow-sm);
+    }
+    .panel h3 { font-size: var(--text-xl); margin-bottom: var(--space-4); }
+    .panel p { color: var(--color-text-muted); }
+    .kicker { color: var(--color-primary-2); font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase; font-weight: 700; margin-bottom: var(--space-3); }
+    .timeline { display: grid; gap: var(--space-4); }
+    .timeline-item {
+      display: grid; grid-template-columns: 180px 1fr; gap: var(--space-5); padding: var(--space-5);
+      background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg);
+    }
+    .timeline-item time { font-size: var(--text-sm); color: var(--color-primary); font-weight: 700; }
+    .timeline-item h3 { font-size: 1.55rem; margin-bottom: .45rem; }
+    .timeline-item p { color: var(--color-text-muted); }
+    .pill-row { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: var(--space-4); }
+    .pill {
+      display: inline-flex; align-items: center; padding: .45rem .75rem; border-radius: var(--radius-full);
+      background: var(--color-surface-2); border: 1px solid var(--color-border); font-size: var(--text-xs); color: var(--color-text-muted);
+    }
+    .process {
+      display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: var(--space-3); align-items: stretch;
+    }
+    .step {
+      position: relative; padding: var(--space-4); border-radius: var(--radius-lg); background: var(--color-surface);
+      border: 1px solid var(--color-border); min-height: 160px;
+    }
+    .step:not(:last-child)::after {
+      content: "→"; position: absolute; right: -1rem; top: 50%; transform: translateY(-50%); color: var(--color-text-faint); font-size: 1.5rem;
+    }
+    .step .num { display: inline-flex; width: 2rem; height: 2rem; border-radius: 50%; align-items: center; justify-content: center; background: var(--color-highlight); color: var(--color-primary); font-size: var(--text-xs); font-weight: 800; margin-bottom: var(--space-3); }
+    .step h3 { font-size: 1.35rem; margin-bottom: var(--space-2); }
+    .step p { color: var(--color-text-muted); font-size: var(--text-sm); }
+    table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+    thead th { text-align: left; padding: var(--space-3) var(--space-4); border-bottom: 2px solid var(--color-border); font-weight: 700; color: var(--color-text-muted); letter-spacing: .06em; font-size: var(--text-xs); text-transform: uppercase; }
+    tbody tr { border-bottom: 1px solid var(--color-divider); }
+    tbody tr:last-child { border-bottom: 0; }
+    tbody td { padding: var(--space-4); vertical-align: top; color: var(--color-text-muted); }
+    td strong { display: block; margin-bottom: .35rem; }
+    .footer-card {
+      padding: var(--space-8); border-radius: calc(var(--radius-xl) + .25rem);
+      background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 92%, black), color-mix(in srgb, var(--color-primary-2) 82%, black));
+      color: #fff; box-shadow: var(--shadow-lg);
+    }
+    .footer-card p { max-width: 62ch; color: rgba(255,255,255,0.82); }
+    .site-footer { padding: 0 0 var(--space-16); }
+    .mini { font-size: var(--text-xs); color: var(--color-text-faint); margin-top: var(--space-4); }
+    @media (max-width: 1100px) {
+      .hero-grid, .section-head, .grid-3, .grid-2, .timeline-item { grid-template-columns: 1fr; }
+      .process { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .step:not(:last-child)::after { display: none; }
+    }
+    @media (max-width: 720px) {
+      .nav { align-items: start; }
+      .nav-links { display: none; }
+      .hero { padding-top: 3rem; }
+      .process { grid-template-columns: 1fr; }
+      .timeline-item { padding: var(--space-4); }
+      h1 { max-width: 100%; }
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="EM 5.0 Critical Thinking Project Initiative home">
+        <svg class="brand-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <path d="M15 47V17h9.5l7.5 12.5L39.5 17H49v30h-8V31.6l-9 14.1-9-14V47H15Z" fill="currentColor"/>
+        </svg>
+        <div class="brand-meta">
+          <strong>EM 5.0</strong>
+          <span>Critical Thinking Project Initiative</span>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#overview">Overview</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#stakeholders">Stakeholders</a>
+      </nav>
+      <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Structured civic reasoning across the Americas</div>
+          <h1>Integrating Eureka Multiverse for critical thinking at public scale.</h1>
+          <p class="lead">This initiative pilots EM 5.0 as a structured critical thinking engine for political, social, and economic analysis across the Americas through a multi-video collaboration with Dr. Arturo López-Levy and Dr. Rafael Espín-Andrade. It positions the platform as a civic reasoning instrument, not only a business analytics tool, by making analysis transparent, explainable, and reproducible.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#architecture">Explore the EM pipeline</a>
+            <a class="btn btn-secondary" href="#roadmap">Review implementation phases</a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Project summary metrics">
+          <div class="kicker">Project signal</div>
+          <h3>Designed as a modular public-analysis platform</h3>
+          <div class="metric-list">
+            <div class="metric"><strong>3</strong><span>content tracks spanning flagship civic analysis, EM 5.0 introduction, and Eureka Business AI alignment.</span></div>
+            <div class="metric"><strong>7</strong><span>specialized EM roles, from Core orchestration to Publisher output, connected through a freeze-and-validate workflow.</span></div>
+            <div class="metric"><strong>5</strong><span>implementation phases from April 2026 alignment through a 2027 consultancy expansion pathway.</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="overview">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Strategic context</div>
+            <h2>A collaboration built around public impact, academic rigor, and ecosystem growth.</h2>
+          </div>
+          <p>The document frames the initiative as a partnership between López-Levy's public-facing political analysis platform and Espín-Andrade's formal reasoning systems, using the Wide Knowledge Discovery foundation to transform complex questions into structured analysis that broad audiences can understand.</p>
+        </div>
+        <div class="grid-3">
+          <article class="panel">
+            <div class="kicker">Collaborator 01</div>
+            <h3>Dr. Arturo López-Levy</h3>
+            <p>Presented as a political scientist and economist whose channel, <em>Conversaciones Americanas</em>, already translates academic analysis of the Americas into accessible public conversation. The initiative uses that audience-facing format as the distribution layer for structured critical thinking episodes.</p>
+          </article>
+          <article class="panel">
+            <div class="kicker">Collaborator 02</div>
+            <h3>Dr. Rafael Espín-Andrade</h3>
+            <p>Positioned as the scientific architect behind Compensatory Fuzzy Logic, Archimedean extensions, and the Wide Knowledge Discovery framework. In the project narrative, his role anchors interpretability, formal reasoning, and the explainable architecture underneath EM 5.0.</p>
+          </article>
+          <article class="panel">
+            <div class="kicker">Philosophical root</div>
+            <h3>Arendt to action</h3>
+            <p>The initiative grounds its rationale in Hannah Arendt's argument that unreflective thinking can enable harm. EM 5.0 is therefore framed as an operational architecture for questioning assumptions, tracing consequences, and producing justified recommendations.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Cognitive architecture</div>
+            <h2>The EM 5.0 pipeline turns public questions into explainable reasoning outputs.</h2>
+          </div>
+          <p>The attached initiative maps Arendtian critical thinking into six operational stages, then extends that logic through EM Core, Structurer, Descriptor, Predictor, Prescriptor, Actioner, and Publisher. The result is a visible pipeline that can be taught on-screen while producing reproducible analysis artifacts.</p>
+        </div>
+        <div class="process" aria-label="EM 5.0 process flow">
+          <div class="step"><div class="num">01</div><h3>Core</h3><p>Classifies each audience question and orchestrates the analytical route across descriptive, predictive, and prescriptive tasks.</p></div>
+          <div class="step"><div class="num">02</div><h3>Structurer</h3><p>Validates the problem, researches actors and context, and synthesizes a precise structured problem statement.</p></div>
+          <div class="step"><div class="num">03</div><h3>Descriptor</h3><p>Models variables, institutions, and relationships so the system under analysis becomes explicit and interpretable.</p></div>
+          <div class="step"><div class="num">04</div><h3>Predictor</h3><p>Builds scenarios, likelihoods, and uncertainty bands to anticipate consequences under changing conditions.</p></div>
+          <div class="step"><div class="num">05</div><h3>Prescriptor</h3><p>Ranks alternatives and produces justified recommendations using compensatory reasoning rather than opaque intuition.</p></div>
+          <div class="step"><div class="num">06</div><h3>Actioner</h3><p>Translates recommendations into implementable steps classified as human, AI, or hybrid execution.</p></div>
+          <div class="step"><div class="num">07</div><h3>Publisher</h3><p>Converts the validated analysis into scripts, public summaries, reports, and academic framing for dissemination.</p></div>
+        </div>
+        <div class="grid-2" style="margin-top: var(--space-8);">
+          <article class="panel">
+            <div class="kicker">Language layers</div>
+            <h3>WKD keeps the output legible across expertise levels.</h3>
+            <p>The initiative highlights five layers—Natural, Semantic, Graphical, Algebraic, and Symbolic—to ensure the same reasoning can be interpreted by general audiences, domain experts, and technical contributors without losing traceability.</p>
+            <div class="pill-row">
+              <span class="pill">Natural language</span>
+              <span class="pill">Semantic framing</span>
+              <span class="pill">Graphical maps</span>
+              <span class="pill">Algebraic indicators</span>
+              <span class="pill">Symbolic predicates</span>
+            </div>
+          </article>
+          <article class="panel">
+            <div class="kicker">Validation logic</div>
+            <h3>Freeze, validate, then publish.</h3>
+            <p>The project emphasizes a freezer and unfreezer model so each public analysis remains versioned and reproducible. Prescriptive outputs are not meant to be published casually; they pass through simulation, internal validation, and potentially external execution depending on stakes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="series">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Video design</div>
+            <h2>A modular series format that teaches the method while analyzing real issues.</h2>
+          </div>
+          <p>The proposal organizes the initiative into three tracks: a flagship multi-episode critical thinking series, a pair of explanatory EM 5.0 episodes, and a joint Eureka Business AI contextualization video. Each episode is designed to be concise, public-facing, and methodologically explicit.</p>
+        </div>
+        <div class="grid-3">
+          <article class="panel">
+            <div class="kicker">Track 1</div>
+            <h3>Critical Thinking in the Americas</h3>
+            <p>The anchor series covers introduction, geopolitical case analysis, regional comparison, participatory prescriptive dialogue, and final synthesis. The format makes reasoning visible instead of presenting conclusions as closed commentary.</p>
+          </article>
+          <article class="panel">
+            <div class="kicker">Track 2</div>
+            <h3>Introducing EM 5.0</h3>
+            <p>Two episodes explain what Eureka Multiverse is and how it thinks. They translate the architecture, GPT roles, and routing model for non-technical audiences without losing methodological precision.</p>
+          </article>
+          <article class="panel">
+            <div class="kicker">Track 3</div>
+            <h3>Eureka Business AI Context</h3>
+            <p>A joint episode bridges the public civic initiative and the Eureka Business AI 2026 program by showing that the same critical thinking infrastructure serves corporate analysis, graduate education, and public discourse.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Implementation</div>
+            <h2>A five-phase roadmap from pilot alignment to full consultancy expansion.</h2>
+          </div>
+          <p>The proposal stages the project in five phases stretching from an April 2026 alignment call through a 2027 pathway that positions EM 5.0 as a consultancy product and pursues external grant funding for public reasoning infrastructure.</p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div><time>Phase 1 · April 2026</time></div>
+            <div>
+              <h3>Strategic Alignment</h3>
+              <p>Initial call between collaborators to confirm scope, finalize content tracks, and establish shared understanding of EM 5.0 methodology for public applications.</p>
+              <div class="pill-row"><span class="pill">Alignment call</span><span class="pill">Scope definition</span><span class="pill">Track confirmation</span></div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div><time>Phase 2 · May–Jun 2026</time></div>
+            <div>
+              <h3>Track 1 Episodes 1–2</h3>
+              <p>Production of the introduction episode and first geopolitical case analysis. This phase establishes the visual and methodological template for the full series.</p>
+              <div class="pill-row"><span class="pill">Episode production</span><span class="pill">Case study selection</span><span class="pill">EM pipeline demo</span></div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div><time>Phase 3 · Jul–Aug 2026</time></div>
+            <div>
+              <h3>EM 5.0 Introduction Episodes</h3>
+              <p>Production of Track 2 episodes explaining the EM architecture, WKD layers, and GPT role structure to build audience familiarity with the analytical method.</p>
+              <div class="pill-row"><span class="pill">Architecture explainer</span><span class="pill">WKD introduction</span><span class="pill">Role walkthrough</span></div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div><time>Phase 4 · Sep–Oct 2026</time></div>
+            <div>
+              <h3>Full Track 1 Completion</h3>
+              <p>Episodes 3–5 of the Critical Thinking in the Americas series, covering regional comparison, participatory prescriptive dialogue, and synthesis. Cross-platform distribution launch.</p>
+              <div class="pill-row"><span class="pill">Regional comparison</span><span class="pill">Prescriptive dialogue</span><span class="pill">Distribution launch</span></div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div><time>Phase 5 · 2027</time></div>
+            <div>
+              <h3>Consultancy Expansion</h3>
+              <p>EM 5.0 positioned as a paid analytical consultancy product. Grant applications submitted for public reasoning infrastructure. Academic publication pathway initiated.</p>
+              <div class="pill-row"><span class="pill">Consultancy product</span><span class="pill">Grant applications</span><span class="pill">Academic publication</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="participation">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Participation design</div>
+            <h2>Audience members become analytical contributors, not passive viewers.</h2>
+          </div>
+          <p>A core design principle is that viewers can submit questions that enter the EM pipeline, watch the analysis unfold, and understand how structured reasoning produces justified outputs rather than opaque conclusions.</p>
+        </div>
+        <div class="grid-2">
+          <article class="panel">
+            <div class="kicker">Viewer input</div>
+            <h3>Questions drive the analysis.</h3>
+            <p>Audience members submit civic and political questions. The Core agent classifies each question and routes it through the appropriate analytical chain, making the triage process visible in the episode format.</p>
+          </article>
+          <article class="panel">
+            <div class="kicker">Transparent method</div>
+            <h3>The reasoning is shown, not summarized.</h3>
+            <p>Rather than delivering polished conclusions, the series shows each analytical step — problem structuring, variable modeling, scenario construction, and prescriptive ranking — so the audience can critique and learn the method simultaneously.</p>
+          </article>
+          <article class="panel">
+            <div class="kicker">Academic bridge</div>
+            <h3>Research groups as analytical partners.</h3>
+            <p>The proposal envisions Eureka research groups contributing case material, validating prescriptive outputs, and co-authoring academic publications that document the public reasoning experiments.</p>
+          </article>
+          <article class="panel">
+            <div class="kicker">Ecosystem signal</div>
+            <h3>Civic EM validates the business case.</h3>
+            <p>By demonstrating that EM 5.0 can handle high-stakes civic questions transparently and rigorously, the initiative simultaneously builds the credibility of the platform for corporate and institutional clients in the Eureka Business AI program.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="stakeholders">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Stakeholder map</div>
+            <h2>Roles, responsibilities, and value exchange across the initiative.</h2>
+          </div>
+          <p>The proposal maps four primary stakeholder groups whose interests converge in this initiative: the Eureka platform team, López-Levy as distribution partner, the academic research network, and the public audience that both validates and benefits from the analysis.</p>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Stakeholder</th>
+              <th>Role in initiative</th>
+              <th>Primary value received</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Eureka / EM 5.0 Team</strong>Platform architect and analytical engine</td>
+              <td>Builds, operates, and refines the EM pipeline across civic case studies</td>
+              <td>Platform validation, public credibility, and consultancy pathway</td>
+            </tr>
+            <tr>
+              <td><strong>Dr. Arturo López-Levy</strong>Distribution and domain partner</td>
+              <td>Hosts episodes, contributes geopolitical framing, reaches existing public audience</td>
+              <td>Methodologically rigorous content, audience differentiation, academic co-authorship</td>
+            </tr>
+            <tr>
+              <td><strong>Dr. Rafael Espín-Andrade</strong>Scientific anchor</td>
+              <td>Validates formal reasoning layer, contributes WKD and CFL architecture</td>
+              <td>Applied demonstration of theoretical framework at public scale</td>
+            </tr>
+            <tr>
+              <td><strong>Eureka Research Groups</strong>Academic contributor network</td>
+              <td>Submits case materials, validates prescriptive outputs, co-publishes findings</td>
+              <td>Applied research experience, publication credits, platform integration</td>
+            </tr>
+            <tr>
+              <td><strong>Public Audience</strong>Analytical participant</td>
+              <td>Submits questions, observes analysis, learns structured reasoning method</td>
+              <td>High-quality civic analysis, reasoning education, participatory agency</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="footer-card">
+          <div class="kicker" style="color: rgba(255,255,255,0.72);">Project framing</div>
+          <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-4);">From AI for business to AI for democracy.</h2>
+          <p>The initiative's final argument is that EM 5.0 can help people reason better together by turning high-stakes public questions into explainable analytical journeys. This HTML version preserves that ambition while presenting the material in a polished, presentation-ready format.</p>
+          <p class="mini" style="color: rgba(255,255,255,0.65);">Built as a single responsive HTML artifact with dark mode, semantic structure, and a narrative layout suitable for review, presentation, or direct hosting.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container mini">EM 5.0 Critical Thinking Project Initiative · High-fidelity HTML adaptation</div>
+  </footer>
+
+  <script>
+    (function(){
+      const root = document.documentElement;
+      const toggle = document.querySelector('[data-theme-toggle]');
+      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      root.setAttribute('data-theme', theme);
+      const renderIcon = () => {
+        toggle.innerHTML = theme === 'dark'
+          ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+          : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+        toggle.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
+      };
+      renderIcon();
+      toggle.addEventListener('click', () => {
+        theme = theme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', theme);
+        renderIcon();
+      });
+    })();
+  </script>
+</body>
+</html>
